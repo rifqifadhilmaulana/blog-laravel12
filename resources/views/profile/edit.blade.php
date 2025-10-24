@@ -58,6 +58,69 @@
                     </button>
                 </div>
             </form>
+
+            
         </div>
+        {{-- ... (Akhir dari kartu Edit Profil) ... --}}
+</div>
+<div class="max-w-2xl mx-auto py-6 sm:px-6 lg:px-8 -mt-18">
+    {{-- Card Ubah Password (REVISI 4) --}}
+    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6">
+        <h1 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Ubah Password</h1>
+
+        {{-- Form Ubah Password --}}
+        {{-- Kita asumsikan Anda memiliki route PUT /password yang menangani perubahan password pengguna yang sedang login --}}
+       <form method="POST" action="{{ route('password.update') }}" class="space-y-5"> 
+                @csrf
+                @method('PUT')
+
+            {{-- Password Saat Ini --}}
+            <div>
+                <label for="current_password" class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">Password Saat Ini</label>
+                <input type="password" id="current_password" name="current_password"
+                       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 
+                              focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 
+                              dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                       placeholder="Masukkan password saat ini" required>
+                @error('current_password', 'updatePassword')
+                    <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                @enderror
+            </div>
+
+            {{-- Password Baru --}}
+            <div>
+                <label for="password" class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">Password Baru</label>
+                <input type="password" id="password" name="password"
+                       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 
+                              focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 
+                              dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                       placeholder="Masukkan password baru" required>
+                @error('password', 'updatePassword')
+                    <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                @enderror
+            </div>
+
+            {{-- Konfirmasi Password Baru --}}
+            <div>
+                <label for="password_confirmation" class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">Konfirmasi Password Baru</label>
+                <input type="password" id="password_confirmation" name="password_confirmation"
+                       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 
+                              focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 
+                              dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                       placeholder="Konfirmasi password baru" required>
+            </div>
+
+            {{-- Tombol Simpan --}}
+            <div class="flex justify-end">
+                <button type="submit"
+                        class="px-5 py-2.5 text-sm font-medium text-white bg-red-600 rounded-lg shadow 
+                               hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 
+                               dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-800">
+                    Ubah Password
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
     </div>
 </x-html>

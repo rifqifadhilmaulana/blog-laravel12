@@ -62,7 +62,7 @@
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 7h10M5 11h10M5 15h5M10 3H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2Z"/>
                             </svg>
                         </div>
-                        <span class="ms-3 text-sm">Post</span>
+                        <span class="ms-3 text-sm">Blog</span>
                     </x-nav-link>
                 </li>
 
@@ -76,7 +76,7 @@
                                 <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd"/>
                             </svg>
                         </div>
-                        <span class="ms-3 text-sm">MyPost</span>
+                        <span class="ms-3 text-sm">postingan ku</span>
                     </x-nav-link>
                 </li>
 
@@ -96,19 +96,7 @@
                 </li>
                 
                
-                <li>
-                    <x-nav-link href="/create" :active="request()->is('create')"
-                        class="flex items-center px-3 py-2.5 text-gray-700 rounded-lg hover:bg-gray-50 
-                               dark:text-gray-300 dark:hover:bg-gray-800 transition-colors duration-150 group">
-                        <div class="flex items-center justify-center w-8 h-8 bg-emerald-50 rounded-lg group-hover:bg-emerald-100 dark:bg-gray-800 dark:group-hover:bg-gray-700">
-                            <svg class="w-4 h-4 text-emerald-600 dark:text-emerald-400" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z"/>
-                                <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd"/>
-                            </svg>
-                        </div>
-                        <span class="ms-3 text-sm">Create Post</span>
-                    </x-nav-link>
-                </li>
+              
 
                 <li>
                     <x-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')"

@@ -6,7 +6,7 @@ use App\Http\Controllers\FollowController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FavoriteController;
-use App\Http\Controllers\CommentController;gi
+use App\Http\Controllers\CommentController;
 // Import Admin Controllers
 use App\Http\Controllers\Admin\AdminController; 
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
@@ -51,6 +51,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/posts/{post}/favorite', [FavoriteController::class, 'toggle'])->name('posts.favorite');
     Route::get('/myfavorite', [FavoriteController::class, 'favorite'])->name('my.favorites');
     Route::post('/posts/{post:slug}/comments', [CommentController::class, 'komen'])->name('comments.store');
+    Route::put('/password', [ForgotPasswordController::class, 'updatePassword'])->name('password.update');
     // Menggunakan {comment} untuk menghapus komentar spesifik
     Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
    

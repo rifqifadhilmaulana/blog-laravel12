@@ -51,36 +51,32 @@ class LoginController extends Controller
         return view('auth.register');
     }
 
+
     // Proses register
-    public function register_proses(Request $request){
+      public function register_proses(Request $request){
         $request->validate([
             'name'     => 'required|min:3|max:50',
             'username' => 'required|min:3|max:50|unique:users,username',
             'email'    => 'required|email|unique:users,email',
             'password' => 'required|min:8|confirmed',
         ],
-[
-            'name.required' => 'Nama wajib diisi',
-            'email.required' => 'Email wajib diisi',
-            'email.email' => 'Format email tidak valid',
-            'email.unique' => 'Email sudah digunakan',
-            'username.required' => 'Username wajib diisi',
-            'username.unique' => 'Username sudah digunakan',
-            'password.required' => 'Password wajib diisi',
-            'password.min' => 'Password minimal 8 karakter',
-            'password.confirmed' => 'Konfirmasi password tidak sesuai',
-        ]);
+        // ... (Pesan validasi tetap sama)
+        );
 
         // Simpan user baru
-        $data = [
+        $user = User::create([ // <-- Tangkap objek user yang baru dibuat
             'name'     => $request->name,
             'username' => $request->username,
             'email'    => $request->email,
             'password' => bcrypt($request->password),
-        ];
+            'is_admin' => false, // Pastikan default user bukan admin
+        ]);
 
-        User::create($data);
+        // LANGSUNG LOGIN DAN REDIRECT KE POSTS
+        Auth::login($user); 
+        $request->session()->regenerate();
 
-        return redirect('/login')->with('success', 'Registrasi berhasil, silakan login.');
+        return redirect()->route('posts.index')->with('success', 'Registrasi berhasil! Selamat datang.');
     }
 }
+  

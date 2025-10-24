@@ -139,7 +139,7 @@
 
       <!-- Isi Artikel -->
       <div class="prose prose-sm sm:prose-base lg:prose-lg dark:prose-invert max-w-none dark:text-white">
-        {!! nl2br(e($post->body)) !!}
+       {!! $post->body !!}
       </div>
 
       <p class="mt-6 text-xs sm:text-sm text-gray-500 dark:text-gray-400">

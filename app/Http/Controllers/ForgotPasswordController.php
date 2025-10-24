@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 
 class ForgotPasswordController extends Controller
 {
@@ -52,5 +53,29 @@ class ForgotPasswordController extends Controller
         return $status === Password::PASSWORD_RESET
             ? redirect('/login')->with('status', __($status))
             : back()->withErrors(['email' => [__($status)]]);
+    }
+
+    public function updatePassword(Request $request): RedirectResponse
+    {
+        // PENTING: Gunakan 'current_password' untuk memverifikasi password lama pengguna
+        $validated = $request->validate([
+            'current_password' => ['required', 'string', 'current_password'], 
+            'password' => ['required', 'string', Password::defaults(), 'confirmed'], // Pastikan Password::defaults() dipanggil
+        ], [
+            // Pesan error kustom
+            'current_password.required' => 'Kata sandi saat ini wajib diisi.',
+            'current_password.current_password' => 'Kata sandi saat ini tidak valid.',
+            'password.required' => 'Kata sandi baru wajib diisi.',
+            'password.confirmed' => 'Konfirmasi kata sandi baru tidak cocok.',
+            // Catatan: Anda mungkin perlu menambahkan min:8 jika belum ada di Password::defaults()
+        ]);
+
+        // Perbarui kata sandi di database
+        $request->user()->update([
+            'password' => Hash::make($validated['password']),
+        ]);
+
+        // Arahkan kembali dengan pesan sukses
+        return back()->with('success', 'Kata sandi berhasil diperbarui!');
     }
 }

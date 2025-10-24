@@ -204,5 +204,32 @@
                 }
             });
         });
+   
+
+    
+    
+    
+        // Pastikan script ini dijalankan setelah DOM dimuat
+        document.addEventListener("DOMContentLoaded", function() {
+            ClassicEditor
+                .create( document.querySelector( '#body' ), { // Inisialisasi pada textarea dengan ID 'body'
+                    // Konfigurasi Toolbar
+                    toolbar: {
+                        items: [
+                            'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote', '|', 'undo', 'redo'
+                        ]
+                    },
+                    // Nonaktifkan fitur auto-saving (opsional)
+                    licenseKey: '', 
+                } )
+                .then( editor => {
+                    console.log( 'CKEditor siap digunakan', editor );
+                } )
+                .catch( error => {
+                    console.error( 'Ada kesalahan saat inisialisasi CKEditor:', error );
+                } );
+        });
+        
+        // ... (sisanya adalah script lama Anda untuk image preview/SweetAlert, biarkan saja)
     </script>
 </x-html>
